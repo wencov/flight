@@ -5,11 +5,11 @@
 
 - Download and extract [flight-delays.zip](https://www.kaggle.com/usdot/flight-delays) into `flight-delays` folder under the `flight` root directory created from above
 
-- To refresh data source, open `flight.pbix` in Power BI Desktop and under `Edit Queries` menu, change path variable and point it to the root folder directory such as `C:\Users\mzwen\Desktop\flight\`
+- To refresh data source, open [flight.pbix](flight.pbix) file in Power BI Desktop and under `Edit Queries` menu, change path variable and point it to the root folder directory such as `C:\Users\mzwen\Desktop\flight\`
 
 
 ## Assumptions:
-- The original dataset includes flight cancellations `CANCELLED = 1`, those cancelled flights are excluded in this delay analysis
+- The original dataset includes flight cancellations `CANCELLED = 1`, those cancelled flights are excluded from this delay analysis
 
 - *Major Origin/Destination Airports* are defined as airports with more than 100,000 annual origin/destination flights in 2015
 
@@ -46,10 +46,21 @@
 
 **Stretch Goals:**
 - Using both DirectQuery and Import data sources to build a composite dimensional model
-  - As csv file is not a [supported date source](https://docs.microsoft.com/en-us/power-bi/power-bi-data-sources) by DirectQuery, composite model is not implemented in this iteration. Import is also the recommended storage mode in this use case, as DirectQuery relies on high performance data source
+  - As csv file is not a [supported data source](https://docs.microsoft.com/en-us/power-bi/power-bi-data-sources) by DirectQuery, composite model is not implemented in this iteration. Import is also the recommended storage mode in this use case, as DirectQuery relies on high performance data source
 
 - Use of aggregates/aggregation tables to support visual performance;
   - Flight volume by airport is aggregated on `origin` and `destination` tables in order to define and visualize major airports
 
 - Setup for Row Level Security in PBI
   - [Row-level security (RLS)](https://docs.microsoft.com/en-us/power-bi/service-admin-rls) is implemented. A role called `Delta` is created to view only `DL` coded flights (Delta Air Lines)
+
+
+## Bonus:
+A simple exponential smoothing time series model is implemented in a Jupyter [notebook](tsa.ipynb) to analyze and predict the on-time performance of Alaska Airlines AS306 from Seattle (SEA) to San Francisco (SFO) in 2015. The following skills are demonstrated
+- Data wrangling 
+- Data profiling 
+- Imputation method
+- Visualization
+- Statistical modeling
+- Object-oriented programing in Python
+- Markdown and LaTex math
