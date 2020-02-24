@@ -1,17 +1,17 @@
-# 2015 USA Flight Delay Analysis using Power BI
+# USA Flight Delay Analysis using Power BI
 
 ## Setup Instruction
 - Setup root directory by `git clone https://github.com/wencov/flight.git`
 
 - Download and extract [flight-delays.zip](https://www.kaggle.com/usdot/flight-delays) into `flight-delays` folder under the `flight` root directory created from above
 
-- To refresh data source, open [flight.pbix](flight.pbix) file in Power BI Desktop and under `Edit Queries` menu, change path variable and point it to the root folder directory such as `C:\Users\mzwen\Desktop\flight\`
+- To refresh data source, open [flight.pbix](flight.pbix) file in Power BI Desktop and under `Edit Queries` menu, change path variable and point it to the root folder directory such as `C:\Users\[username]\Desktop\flight\`
 
 
 ## Assumptions:
 - The original dataset includes flight cancellations `CANCELLED = 1`, those cancelled flights are excluded from this delay analysis
 
-- *Major Origin/Destination Airports* are defined as airports with more than 100,000 annual origin/destination flights in 2015
+- *Major Origin/Destination Airports* are defined as airports with more than 100,000 annual inbound or outbound flights in 2015
 
 - Flights are assumed to be `On-time` if `Arrival Delay` is less than 30 minutes
 
@@ -19,7 +19,7 @@
 
 - Three airports without `Latitude` and `Longitude` data are excluded in the map view. These are small airports (`UST`, `PBG`, `ECP`) with less than 5,000 annual flight volume
 
-- There are around 480k flights during October 2015 that have Original and Destination Airports not in ITAT code. The numerical code seems to be U.S. Department of Transportation's airport code. This data quality issue is best fixed at data source before importing to Power BI due to performance concern. However, in this analysis, these airport codes are kept as is. And they are showing as `(Blank)` when analyzing by airport
+- There are around 480k flight data points from October 2015 that have Original and Destination Airports not in ITAT code. The numerical code seems to be U.S. Department of Transportation's airport code. This data quality issue is best fixed at data source. In this analysis, these airport codes are kept as is. However, they are showing as `(Blank)` when analyzing by airport
 
 
 ## Checkpoints:
@@ -27,13 +27,13 @@
   - DAX is used to generate `date` table, `origin[Volume]` column, `[% Delay]` measure for example
 
 - PowerQuery to ingest and process the data sources
-  - ETL is performed by PowerQuery and modified M code
+  - ETL is performed by PowerQuery and modifying M code
 
 - Data model design with fact and dimension tables based on reporting requirements
   - This report is supported by a dimensional model in star schema
 
 - Visuals that best assist a user in analyzing this dataset and display insights;
-  - Various visuals are utilized include bar chart, line chart, as well as maps
+  - Various visuals are utilized include bar chart, line chart, tables as well as maps
 
 - Visual/Page and Report level filters
   - `Arrival Type` is set as report level filter, while page leve filter includes `Airline Name`
@@ -56,11 +56,12 @@
 
 
 ## Bonus:
-A simple exponential smoothing time series model is implemented in a Jupyter [notebook](tsa.ipynb) to analyze and predict the on-time performance of Alaska Airlines AS306 from Seattle (SEA) to San Francisco (SFO) in 2015. The following skills are demonstrated
+An exponential smoothing time series model as well as a linear regression model are implemented in a Jupyter [notebook](delay.ipynb) to analyze and predict the on-time performance of Alaska Airlines AS306 from Seattle (SEA) to San Francisco (SFO) in 2015. The following skills are demonstrated
 - Data wrangling 
 - Data profiling 
 - Imputation method
 - Visualization
 - Statistical modeling
 - Object-oriented programing in Python
-- Markdown and LaTex math
+- Optimization
+- Markdown and LaTeX
