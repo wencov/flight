@@ -1,11 +1,11 @@
 # USA Flight Delay Analysis using Power BI
 
-## Setup Instruction
+## Setup Instruction:
 - Setup root directory by `git clone https://github.com/wencov/flight.git`
 
 - Download and extract [flight-delays.zip](https://www.kaggle.com/usdot/flight-delays) into `flight-delays` folder under the `flight` root directory created from above
 
-- To refresh data source, open [flight.pbix](flight.pbix) file in Power BI Desktop and under `Edit Queries` menu, change path variable and point it to the root folder directory such as `C:\Users\[username]\Desktop\flight\`
+- To refresh data source, open [flight.pbix](flight.pbix) file in Power BI Desktop and under `Edit Queries` menu, change `path` variable and point it to the root folder directory such as `C:\Users\[username]\Desktop\flight\`
 
 
 ## Assumptions:
@@ -62,6 +62,8 @@ An exponential smoothing time series model as well as a linear regression model 
 - Imputation method
 - Visualization
 - Statistical modeling
-- Object-oriented programing in Python
 - Optimization
+- Cross Validation
+- Model evaluation
+- Object-oriented programing in Python
 - Markdown and LaTeX
