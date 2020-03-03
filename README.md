@@ -9,11 +9,13 @@
 
 
 ## Assumptions:
-- The original dataset includes flight cancellations `CANCELLED = 1`, those cancelled flights are excluded from this delay analysis
-
 - *Major Origin/Destination Airports* are defined as airports with more than 100,000 annual inbound or outbound flights in 2015
 
+- *Big 4 Airlines* are American Airlines (AA), Delta Air Lines (DL), United Airlines (UA), Southwest Airlines (WN)
+
 - Flights are assumed to be `On-time` if `Arrival Delay` is less than 30 minutes
+
+- The original dataset includes flight cancellations `CANCELLED = 1`, those cancelled flights are excluded from this delay analysis
 
 - `DEPARTURE_DELAY` and `ARRIVAL_DELAY` in minutes are transformed such that any negative value is replaced by `0`, and `Null` value is replaced by `-1` for flights that did not arrive the destination; `ARRIVAL_DELAY` more than 30 minutes are futher aggregated by hours under `Arrival Delay in Hours` to further reduce cardinality
 
@@ -63,7 +65,7 @@ An exponential smoothing time series model as well as a linear regression model 
 - Visualization
 - Statistical modeling
 - Optimization
-- Cross Validation
+- Cross validation
 - Model evaluation
 - Object-oriented programing in Python
 - Markdown and LaTeX
