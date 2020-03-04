@@ -48,10 +48,14 @@
 
 **Stretch Goals:**
 - Using both DirectQuery and Import data sources to build a composite dimensional model
-  - As csv file is not a [supported data source](https://docs.microsoft.com/en-us/power-bi/power-bi-data-sources) by DirectQuery, composite model is not implemented in this iteration. Import is also the recommended storage mode in this use case, as DirectQuery relies on high performance data source
+  - DirectQuery is useful in [several senarios](https://docs.microsoft.com/en-us/power-bi/desktop-directquery-about#when-is-directquery-useful). The most common use cases are near real-time reporting or handling very large data.
+  - As csv file is not a [supported data source](https://docs.microsoft.com/en-us/power-bi/power-bi-data-sources) by DirectQuery, composite model is not implemented in this iteration without introducing additional data source. 
+  - Import mode is also the recommended storage mode in this use case, as DirectQuery relies on high performance data source which is usually provisioned on a server such as SQL Server Analysis Services or Azure Analysis Services.
 
 - Use of aggregates/aggregation tables to support visual performance;
-  - Flight volume by airport is aggregated on `origin` and `destination` tables in order to define and visualize major airports
+  - Flight volume by airport is aggregated on `origin` and `destination` tables in order to define, visualize and slice by major airports.
+  - [Aggregation table](https://docs.microsoft.com/en-us/power-bi/desktop-aggregations) is mostly used in DirectQuery/Composite models. It optimizes performance by directing queries to smaller aggregation tables. However, in this implementation, the performance is already quite satisfactory thanks to various performance best practices as well as the in-memory columnar database (VertiPaq). In addition, `Detail Table` for aggregations must use DirectQuery storage mode. Aggregations over import table is not yet supported.
+  - When using aggregations that combine DirectQuery, Import, and/or Dual storage modes, keeping the in-memory cache in sync with the source data also needs to be carefully evaluated as any mismatching issue is not attempted by the query engine.
 
 - Setup for Row Level Security in PBI
   - [Row-level security (RLS)](https://docs.microsoft.com/en-us/power-bi/service-admin-rls) is implemented. A role called `Delta` is created to view only `DL` coded flights (Delta Air Lines)
